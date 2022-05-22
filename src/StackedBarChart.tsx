@@ -260,20 +260,20 @@ class StackedBarChart extends AbstractChart<
                 verticalLabelsHeightPercentage
               })}
           </G>
-          <G>
-            {withHorizontalLabels
-              ? this.renderHorizontalLabels({
-                  ...config,
-                  count: segments,
-                  data: [0, border],
-                  paddingTop,
-                  paddingRight,
-                  decimalPlaces,
-                  verticalLabelsHeightPercentage,
-                  formatYLabel
-                })
-              : null}
-          </G>
+          {withHorizontalLabels ? (
+            <G>
+              {this.renderHorizontalLabels({
+                ...config,
+                count: segments,
+                data: [0, border],
+                paddingTop,
+                paddingRight,
+                decimalPlaces,
+                verticalLabelsHeightPercentage,
+                formatYLabel
+              })}
+            </G>
+          ) : null}
           <G>
             {withVerticalLabels
               ? this.renderVerticalLabels({
