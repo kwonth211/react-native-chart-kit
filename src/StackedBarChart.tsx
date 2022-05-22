@@ -44,6 +44,10 @@ export interface StackedBarChartProps extends AbstractChartProps {
    */
   withHorizontalLabels?: boolean;
   /**
+   * Show horizontal lines - default: True.
+   */
+  withHorizontalLines?: boolean;
+  /**
    * The number of horizontal lines
    */
   segments?: number;
@@ -204,7 +208,8 @@ class StackedBarChart extends AbstractChart<
       formatYLabel = (yLabel: string) => {
         return yLabel;
       },
-      hideLegend = false
+      hideLegend = false,
+      withHorizontalLines = false
     } = this.props;
 
     const { borderRadius = 0 } = style;
@@ -247,12 +252,13 @@ class StackedBarChart extends AbstractChart<
             fill="url(#backgroundGradient)"
           />
           <G>
-            {this.renderHorizontalLines({
-              ...config,
-              count: segments,
-              paddingTop,
-              verticalLabelsHeightPercentage
-            })}
+            {withHorizontalLines &&
+              this.renderHorizontalLines({
+                ...config,
+                count: segments,
+                paddingTop,
+                verticalLabelsHeightPercentage
+              })}
           </G>
           <G>
             {withHorizontalLabels
